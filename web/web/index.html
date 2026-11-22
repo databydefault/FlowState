@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#101827" />
+  <title>FlowState Cloud</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1220;--panel:#121d2e;--panel2:#172438;--line:#28384e;--text:#edf3fb;--muted:#9aabc0;--accent:#89b4ff;--green:#86d5ae;--red:#ff9d9d;--shadow:0 18px 48px #0005}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 15% -10%,#1b3151 0%,transparent 60%),var(--bg);color:var(--text);font:15px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+    button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{max-width:1120px;margin:auto;padding:28px 18px 56px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,#6ba7ff,#9d8cff);color:#081120;font-size:21px;font-weight:900}.brand h1{margin:0;font-size:21px;letter-spacing:-.4px}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.userbar{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}.btn{border:1px solid var(--line);border-radius:11px;padding:9px 13px;background:var(--panel2);color:var(--text);font-weight:650}.btn.primary{background:var(--accent);border-color:var(--accent);color:#091422}.btn.danger{color:var(--red)}.btn:disabled{opacity:.5;cursor:not-allowed}.hero{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:28px 0 18px}.eyebrow{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase}.hero h2{font-size:clamp(27px,4vw,38px);line-height:1.1;margin:7px 0 6px;letter-spacing:-1px}.hero p{margin:0;color:var(--muted)}.date-pill{border:1px solid var(--line);background:#111c2c;border-radius:999px;padding:8px 13px;color:var(--muted);white-space:nowrap;font-size:13px}.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(290px,.85fr);gap:18px;align-items:start}.panel{background:linear-gradient(180deg,#152238,#101a2a);border:1px solid var(--line);border-radius:18px;padding:19px;box-shadow:var(--shadow)}.panel h3{margin:0;font-size:17px;letter-spacing:-.2px}.sub{margin:4px 0 16px;color:var(--muted);font-size:13px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:#bac8d9;font-weight:650}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:#0c1625;color:var(--text);border-radius:10px;padding:10px 11px;outline:none}.field textarea{min-height:72px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #89b4ff20}.actions{display:flex;gap:8px;align-items:center;margin-top:13px}.list{display:flex;flex-direction:column;gap:9px}.task{display:flex;align-items:flex-start;gap:11px;padding:12px;border:1px solid var(--line);border-radius:13px;background:#0d1828}.check{width:21px;height:21px;flex:0 0 21px;border-radius:7px;border:1px solid #58708f;background:#15253a;color:#081522;font-weight:900;display:grid;place-items:center;padding:0}.check.done{background:var(--green);border-color:var(--green)}.taskmain{min-width:0;flex:1}.tasktitle{font-weight:720;overflow-wrap:anywhere}.task.done .tasktitle{text-decoration:line-through;color:#899ab0}.meta{font-size:12px;color:var(--muted);margin-top:4px;display:flex;gap:9px;flex-wrap:wrap}.taskbuttons{display:flex;gap:5px}.iconbtn{border:0;background:transparent;color:var(--muted);font-size:17px;padding:2px 5px}.empty{border:1px dashed #3a4c64;border-radius:13px;text-align:center;color:var(--muted);padding:22px 12px;font-size:13px}.habit{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:13px;background:#0d1828}.habitname{flex:1;min-width:0;font-weight:700}.habitmeta{display:block;font-size:12px;color:var(--muted);font-weight:400}.habitstatus{font-size:12px;color:var(--green)}.notice{padding:10px 12px;border-radius:11px;background:#132c42;border:1px solid #294e70;color:#c3e4ff;font-size:13px;margin:0 0 14px}.error{background:#3b1e29;border-color:#673443;color:#ffd0d0}.hidden{display:none!important}.authbox{max-width:440px;margin:9vh auto 0}.authbox .panel{padding:24px}.muted{color:var(--muted)}.tiny{font-size:11px;color:var(--muted);margin-top:10px}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.divider{height:1px;background:var(--line);margin:18px 0}.daychecks{display:flex;flex-wrap:wrap;gap:6px}.daychecks label{display:flex;gap:5px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:5px 8px;font-size:12px;color:var(--muted)}
+    @media(max-width:800px){.grid{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}.top{align-items:flex-start}.userbar{flex-direction:column;align-items:flex-end}.panel{padding:16px}}
+    @media(max-width:470px){.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.wrap{padding:18px 12px 40px}.brand h1{font-size:18px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div class="brand"><div class="logo">F</div><div><h1>FlowState Cloud</h1><p>Your schedule, synced to your account</p></div></div>
+      <div id="userbar" class="userbar hidden"><span id="useremail"></span><button id="signout" class="btn">Sign out</button></div>
+    </header>
+
+    <section id="authview" class="authbox">
+      <div class="panel">
+        <div class="eyebrow">Personal workspace</div><h2 style="margin:7px 0 5px">Sign in to FlowState</h2>
+        <p class="sub">Use the same account on your devices and dashboard.</p>
+        <div id="authnotice" class="notice hidden"></div>
+        <form id="authform">
+          <div class="formgrid">
+            <div class="field full"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+            <div class="field full"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" minlength="8" required placeholder="At least 8 characters"></div>
+          </div>
+          <div class="actions"><button id="login" class="btn primary" type="submit">Sign in</button><button id="signup" class="btn" type="button">Create account</button></div>
+        </form>
+        <p class="tiny">Email confirmation may be required after creating an account. Your data is protected by Supabase Row Level Security.</p>
+      </div>
+    </section>
+
+    <section id="appview" class="hidden">
+      <div class="hero"><div><div class="eyebrow">Your overview</div><h2>Plan with intention.</h2><p>Manage tasks, time blocks and habits from one place.</p></div><div class="date-pill" id="todaylabel"></div></div>
+      <div id="appnotice" class="notice hidden"></div>
+      <div class="grid">
+        <section class="panel">
+          <div class="sectionhead"><div><h3 id="taskformtitle">Add a task</h3><p class="sub" style="margin-bottom:0">Create a task or reserve a time block.</p></div></div>
+          <form id="taskform">
+            <input id="taskid" type="hidden">
+            <div class="formgrid">
+              <div class="field full"><label for="title">Task title</label><input id="title" maxlength="180" required placeholder="e.g. Review weekly priorities"></div>
+              <div class="field full"><label for="description">Notes</label><textarea id="description" placeholder="Optional details"></textarea></div>
+              <div class="field"><label for="due">Due date</label><input id="due" type="date"></div>
+              <div class="field"><label for="priority">Priority</label><select id="priority"><option value="NOTHING">Not set</option><option value="LOW">Low</option><option value="MEDIUM">Medium</option><option value="HIGH">High</option></select></div>
+              <div class="field"><label for="start">Schedule start</label><input id="start" type="datetime-local"></div>
+              <div class="field"><label for="end">Schedule end</label><input id="end" type="datetime-local"></div>
+              <div class="field full"><label for="recurrence">Repeat</label><select id="recurrence"><option value="">Does not repeat</option><option value="FREQ=DAILY">Every day</option><option value="FREQ=WEEKLY">Every week</option><option value="FREQ=MONTHLY">Every month</option></select></div>
+            </div>
+            <div class="actions"><button id="tasksave" class="btn primary" type="submit">Save task</button><button id="taskcancel" class="btn hidden" type="button">Cancel edit</button></div>
+          </form>
+          <div class="divider"></div>
+          <div class="sectionhead"><div><h3>Tasks</h3><p class="sub" style="margin:3px 0 0">Your active and completed items.</p></div><select id="taskfilter" class="btn" aria-label="Filter tasks"><option value="active">Active</option><option value="all">All tasks</option><option value="done">Completed</option></select></div>
+          <div id="tasklist" class="list"><div class="empty">Loading tasks…</div></div>
+        </section>
+
+        <section class="panel">
+          <h3>Habits</h3><p class="sub">Track daily habits and simple numeric goals.</p>
+          <form id="habitform">
+            <div class="formgrid">
+              <div class="field full"><label for="habitname">Habit name</label><input id="habitname" maxlength="100" required placeholder="e.g. Read for 20 minutes"></div>
+              <div class="field"><label for="habitkind">Type</label><select id="habitkind"><option value="BOOLEAN">Done / not done</option><option value="NUMERIC">Numeric target</option></select></div>
+              <div class="field"><label for="habitunit">Unit (numeric)</label><input id="habitunit" maxlength="25" placeholder="pages, glasses…"></div>
+              <div class="field full"><label for="habitgoal">Target (numeric)</label><input id="habitgoal" type="number" min="0.01" step="0.01" placeholder="e.g. 8"></div>
+              <div class="field full"><label>Scheduled days</label><div id="days" class="daychecks"></div></div>
+            </div>
+            <div class="actions"><button class="btn primary" type="submit">Add habit</button></div>
+          </form>
+          <div class="divider"></div>
+          <div class="sectionhead"><div><h3>Today's progress</h3><p class="sub" style="margin:3px 0 0" id="habitdatelabel"></p></div></div>
+          <div id="habitlist" class="list"><div class="empty">Loading habits…</div></div>
+        </section>
+      </div>
+      <p class="tiny" style="text-align:center;margin-top:18px">FlowState Cloud dashboard · Times are interpreted in your browser's local timezone. Android app sync will be added separately.</p>
+    </section>
+  </main>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    // Public browser credentials. RLS policies, not key secrecy, protect user data.
+    const SUPABASE_URL = 'https://mnogaahcwgirhrejpxcs.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_oaISnnd_Xp4eJ2YRhy25qw_Ub9_ybe1';
+    const db = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+    const $ = (id) => document.getElementById(id);
+    const days = [{n:'Mon',v:1},{n:'Tue',v:2},{n:'Wed',v:3},{n:'Thu',v:4},{n:'Fri',v:5},{n:'Sat',v:6},{n:'Sun',v:7}];
+    let currentUser = null, tasks = [], habits = [], todayEntries = [];
+    const esc = (s='') => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const localDateInput = (iso) => { if(!iso) return ''; const d=new Date(iso); const p=n=>String(n).padStart(2,'0'); return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`; };
+    const localDateTimeInput = (iso) => { if(!iso) return ''; const d=new Date(iso); const p=n=>String(n).padStart(2,'0'); return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`; };
+    const inputToIso = value => value ? new Date(value).toISOString() : null;
+    const dateToIsoNoon = value => value ? new Date(`${value}T12:00:00`).toISOString() : null;
+    const dateFmt = value => value ? new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(new Date(value)) : '';
+    const dateOnlyFmt = value => value ? new Intl.DateTimeFormat(undefined,{dateStyle:'medium'}).format(new Date(value)) : '';
+    function notice(id,msg,isError=false){const el=$(id);el.textContent=msg;el.classList.remove('hidden','error');if(isError)el.classList.add('error');}
+    function clearNotice(id){$(id).classList.add('hidden');}
+    function setView(signedIn){$('authview').classList.toggle('hidden',signedIn);$('appview').classList.toggle('hidden',!signedIn);$('userbar').classList.toggle('hidden',!signedIn);}
+
+    // Habit weekday selector: ISO weekday numbers (Monday=1…Sunday=7).
+    $('days').innerHTML = days.map(d=>`<label><input type="checkbox" value="${d.v}" checked> ${d.n}</label>`).join('');
+    $('todaylabel').textContent = new Intl.DateTimeFormat(undefined,{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date());
+    $('habitdatelabel').textContent = new Intl.DateTimeFormat(undefined,{dateStyle:'full'}).format(new Date());
+
+    $('authform').addEventListener('submit', async e=>{
+      e.preventDefault(); clearNotice('authnotice');
+      const email=$('email').value.trim(), password=$('password').value;
+      const {error}=await db.auth.signInWithPassword({email,password});
+      if(error) notice('authnotice',error.message,true);
+    });
+    $('signup').addEventListener('click',async()=>{
+      clearNotice('authnotice'); const email=$('email').value.trim(),password=$('password').value;
+      if(!email||password.length<8){notice('authnotice','Enter a valid email and a password of at least 8 characters.',true);return;}
+      const {data,error}=await db.auth.signUp({email,password});
+      if(error){notice('authnotice',error.message,true);return;}
+      notice('authnotice',data.session?'Account created. You are signed in.':'Account created. Check your email to confirm the address, then sign in.');
+    });
+    $('signout').addEventListener('click',async()=>{await db.auth.signOut();});
+
+    $('taskform').addEventListener('submit',async e=>{
+      e.preventDefault(); if(!currentUser)return; clearNotice('appnotice');
+      const start=inputToIso($('start').value), end=inputToIso($('end').value);
+      if(start&&end&&new Date(end)<=new Date(start)){notice('appnotice','Schedule end must be later than schedule start.',true);return;}
+      const payload={user_id:currentUser.id,title:$('title').value.trim(),description:$('description').value.trim(),priority:$('priority').value,due_date:dateToIsoNoon($('due').value),scheduled_start:start,scheduled_end:end,recurrence_rule:$('recurrence').value||null,updated_at:new Date().toISOString()};
+      const id=$('taskid').value;
+      const result=id?await db.from('fs_tasks').update(payload).eq('id',id):await db.from('fs_tasks').insert(payload);
+      if(result.error){notice('appnotice',result.error.message,true);return;}
+      resetTaskForm(); await loadTasks(); notice('appnotice',id?'Task updated.':'Task added.');
+    });
+    function resetTaskForm(){ $('taskform').reset();$('taskid').value='';$('taskformtitle').textContent='Add a task';$('tasksave').textContent='Save task';$('taskcancel').classList.add('hidden');$('priority').value='NOTHING'; }
+    $('taskcancel').addEventListener('click',resetTaskForm);
+    function editTask(id){const t=tasks.find(x=>x.id===id);if(!t)return;$('taskid').value=t.id;$('title').value=t.title;$('description').value=t.description||'';$('priority').value=t.priority||'NOTHING';$('due').value=localDateInput(t.due_date);$('start').value=localDateTimeInput(t.scheduled_start);$('end').value=localDateTimeInput(t.scheduled_end);$('recurrence').value=t.recurrence_rule||'';$('taskformtitle').textContent='Edit task';$('tasksave').textContent='Update task';$('taskcancel').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
+    async function toggleTask(id,done){const {error}=await db.from('fs_tasks').update({is_done:done,completed_at:done?new Date().toISOString():null,updated_at:new Date().toISOString()}).eq('id',id);if(error)notice('appnotice',error.message,true);await loadTasks();}
+    async function deleteTask(id){if(!confirm('Delete this task?'))return;const {error}=await db.from('fs_tasks').update({deleted_at:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('id',id);if(error)notice('appnotice',error.message,true);await loadTasks();}
+    $('taskfilter').addEventListener('change',renderTasks);
+    async function loadTasks(){const {data,error}=await db.from('fs_tasks').select('*').is('deleted_at',null).order('due_date',{ascending:true,nullsFirst:false}).order('scheduled_start',{ascending:true,nullsFirst:false});if(error){notice('appnotice',error.message,true);return;}tasks=data||[];renderTasks();}
+    function renderTasks(){const filter=$('taskfilter').value;const list=tasks.filter(t=>filter==='all'||(filter==='done'?t.is_done:!t.is_done));const box=$('tasklist');if(!list.length){box.innerHTML='<div class="empty">No tasks here yet. Add one above.</div>';return;}box.innerHTML=list.map(t=>{
+      const time=t.scheduled_start?`Scheduled ${dateFmt(t.scheduled_start)}${t.scheduled_end?' – '+new Intl.DateTimeFormat(undefined,{timeStyle:'short'}).format(new Date(t.scheduled_end)):''}`:'';
+      const due=t.due_date?`Due ${dateOnlyFmt(t.due_date)}`:'';const repeat=t.recurrence_rule?`Repeats ${t.recurrence_rule.replace('FREQ=','').toLowerCase()}`:'';
+      return `<article class="task ${t.is_done?'done':''}"><button class="check ${t.is_done?'done':''}" data-action="toggle" data-id="${t.id}" aria-label="Toggle completion">${t.is_done?'✓':''}</button><div class="taskmain"><div class="tasktitle">${esc(t.title)}</div>${t.description?`<div class="meta">${esc(t.description)}</div>`:''}<div class="meta">${[time,due,t.priority&&t.priority!=='NOTHING'?t.priority.toLowerCase()+' priority':'',repeat].filter(Boolean).map(esc).join(' · ')}</div></div><div class="taskbuttons"><button class="iconbtn" title="Edit" data-action="edit" data-id="${t.id}">✎</button><button class="iconbtn" title="Delete" data-action="delete" data-id="${t.id}">×</button></div></article>`;
+    }).join('');}
+    $('tasklist').addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;const id=b.dataset.id;if(b.dataset.action==='toggle'){const t=tasks.find(x=>x.id===id);toggleTask(id,!t?.is_done);}if(b.dataset.action==='edit')editTask(id);if(b.dataset.action==='delete')deleteTask(id);});
+
+    $('habitform').addEventListener('submit',async e=>{e.preventDefault();if(!currentUser)return;clearNotice('appnotice');const kind=$('habitkind').value;const goal=$('habitgoal').value?Number($('habitgoal').value):null;if(kind==='NUMERIC'&&(!goal||goal<=0)){notice('appnotice','Enter a numeric target greater than zero.',true);return;}const scheduled=[...$('days').querySelectorAll('input:checked')].map(x=>Number(x.value));if(!scheduled.length){notice('appnotice','Select at least one scheduled day.',true);return;}const payload={user_id:currentUser.id,name:$('habitname').value.trim(),habit_type:kind,unit:kind==='NUMERIC'?$('habitunit').value.trim()||null:null,target_value:kind==='NUMERIC'?goal:null,scheduled_days:scheduled,updated_at:new Date().toISOString()};const {error}=await db.from('fs_habits').insert(payload);if(error){notice('appnotice',error.message,true);return;}e.target.reset();$('habitkind').value='BOOLEAN';$('days').querySelectorAll('input').forEach(x=>x.checked=true);await loadHabits();notice('appnotice','Habit added.');});
+    function todayString(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
+    async function loadHabits(){const [h,e]=await Promise.all([db.from('fs_habits').select('*').is('deleted_at',null).order('position'),db.from('fs_habit_entries').select('*').eq('entry_date',todayString()).is('deleted_at',null)]);if(h.error||e.error){notice('appnotice',(h.error||e.error).message,true);return;}habits=h.data||[];todayEntries=e.data||[];renderHabits();}
+    function renderHabits(){const box=$('habitlist');if(!habits.length){box.innerHTML='<div class="empty">No habits yet. Add one above.</div>';return;}const dow=new Date().getDay()||7;const today=habits.filter(h=>(h.scheduled_days||[]).includes(dow));if(!today.length){box.innerHTML='<div class="empty">No habits scheduled for today.</div>';return;}box.innerHTML=today.map(h=>{const entry=todayEntries.find(e=>e.habit_id===h.id);const done=!!entry;const val=entry?.value??'';return `<div class="habit"><div class="habitname">${esc(h.name)}<span class="habitmeta">${h.habit_type==='NUMERIC'?`Target ${esc(h.target_value??'')} ${esc(h.unit||'')}`:'Daily check-in'}</span></div>${h.habit_type==='NUMERIC'?`<input aria-label="Today's ${esc(h.name)} value" data-habit-value="${h.id}" type="number" min="0" step="0.01" value="${val}" placeholder="0" style="width:78px;background:#0c1625;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:7px">`:`<span class="habitstatus">${done?'Done today':'Not done'}</span>`}<button class="btn ${done?'':'primary'}" data-habit="${h.id}" data-done="${done}">${h.habit_type==='NUMERIC'?'Save':done?'Undo':'Mark done'}</button></div>`;}).join('');}
+    $('habitlist').addEventListener('click',async e=>{const b=e.target.closest('[data-habit]');if(!b)return;const id=b.dataset.habit,done=b.dataset.done==='true',h=habits.find(x=>x.id===id);const numeric=h?.habit_type==='NUMERIC';let value=1;if(numeric){value=Number($(`input[data-habit-value="${id}"]`)?.value);if(!Number.isFinite(value)||value<0){notice('appnotice','Enter a valid non-negative number.',true);return;}}const existing=todayEntries.find(x=>x.habit_id===id);let result;if(done&&!numeric){result=await db.from('fs_habit_entries').update({deleted_at:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('id',existing.id);}else{result=await db.from('fs_habit_entries').upsert({user_id:currentUser.id,habit_id:id,entry_date:todayString(),value,completed_at:value>0?new Date().toISOString():null,deleted_at:null,updated_at:new Date().toISOString()},{onConflict:'user_id,habit_id,entry_date'});}if(result.error)notice('appnotice',result.error.message,true);await loadHabits();});
+
+    async function refresh(){await Promise.all([loadTasks(),loadHabits()]);}
+    db.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null;setView(!!currentUser);if(currentUser){$('useremail').textContent=currentUser.email||'Signed in';refresh();}else{tasks=[];habits=[];todayEntries=[];}});
+    const {data:{session}}=await db.auth.getSession();currentUser=session?.user||null;setView(!!currentUser);if(currentUser){$('useremail').textContent=currentUser.email||'Signed in';await refresh();}
+  </script>
+</body>
+</html>
