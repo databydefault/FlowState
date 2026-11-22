@@ -18,20 +18,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+    name: Package dashboard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload dashboard artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "web"
+
   deploy:
+    name: Deploy dashboard
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-      - name: Upload dashboard
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "web"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
